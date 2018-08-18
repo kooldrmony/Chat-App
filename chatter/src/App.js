@@ -45,6 +45,7 @@ class App extends Component {
       <div className="App">
 
         <MessageList messages={this.state.messages} />
+        <SendMessageForm />
    
       </div>
     );
