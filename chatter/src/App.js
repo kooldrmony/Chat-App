@@ -19,6 +19,7 @@ class App extends Component {
       joinedRooms: [],
     }
     this.sendMessage = this.sendMessage.bind(this)
+    this.subscribeToRoom = this.subscribeToRoom.bind(this)
   }
 
   componentDidMount() {
@@ -43,7 +44,13 @@ class App extends Component {
         })
       })
       .catch(err => console.log('error on joinableRoom: ', err))
-      this.currentUser.subscribeToRoom({
+      this.subscribeToRoom()
+    })
+    .catch(err => console.log('error on connecting: ', err))
+  }
+
+  subscribeToRoom(){
+    this.currentUser.subscribeToRoom({
         roomId: 13776982,
         hooks: {
           onNewMessage: message => {
@@ -53,8 +60,6 @@ class App extends Component {
           }
         }
       })
-    })
-    .catch(err => console.log('error on connecting: ', err))
   }
 
   sendMessage(text) {
