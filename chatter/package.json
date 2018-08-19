@@ -2,7 +2,7 @@
   "name": "chatter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kooldrmony.github.io/Chat-App",
+  "homepage": "https://kooldrmony.github.io/Chat-App/chatter",
   "dependencies": {
     "@pusher/chatkit": "^0.7.17",
     "gh-pages": "^1.2.0",
