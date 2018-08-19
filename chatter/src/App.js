@@ -4,6 +4,7 @@ import './App.css';
 import MessageList from './components/MessageList'
 import Chatkit from '@pusher/chatkit';
 import { instanceLocator, tokenUrl } from './components/config'
+import SendMessageForm from './components/SendMessageForm'
 
 class App extends Component {
   
@@ -12,6 +13,7 @@ class App extends Component {
     this.state = {
       messages: []
     }
+    this.sendMessage = this.sendMessage.bind(this)
   }
 
   componentDidMount() {
@@ -26,7 +28,8 @@ class App extends Component {
 
     chatManager.connect()
     .then(currentUser => {
-      currentUser.subscribeToRoom({
+      this.currentUser = currentUser
+      this.currentUser.subscribeToRoom({
         roomId: 13776982,
         hooks: {
           onNewMessage: message => {
@@ -39,13 +42,20 @@ class App extends Component {
     })
   }
 
+  sendMessage(text) {
+    this.currentUser.sendMessage({
+      text,
+      roomId: 13776982
+    })
+  }
+
 
   render() {
     return (
       <div className="App">
 
         <MessageList messages={this.state.messages} />
-        <SendMessageForm />
+        <SendMessageForm sendMessage={this.sendMessage}/>
    
       </div>
     );
