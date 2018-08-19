@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
-import MessageList from './components/MessageList'
+// import './App.css';
+import './index.css';
+import MessageList from './components/MessageList';
 import Chatkit from '@pusher/chatkit';
-import { instanceLocator, tokenUrl } from './components/config'
-import SendMessageForm from './components/SendMessageForm'
+import { instanceLocator, tokenUrl } from './components/config';
+import SendMessageForm from './components/SendMessageForm';
+import RoomList from './components/RoomList';
+import NewRoomForm from './components/NewRoomForm';
 
 class App extends Component {
   
   constructor(){
     super()
     this.state = {
-      messages: []
+      messages: [],
+      joinableRooms: [],
+      joinedRooms: [],
     }
     this.sendMessage = this.sendMessage.bind(this)
   }
@@ -29,6 +34,15 @@ class App extends Component {
     chatManager.connect()
     .then(currentUser => {
       this.currentUser = currentUser
+
+      this.currentUser.getJoinableRooms()
+      .then(joinableRooms => {
+        this.setState({
+          joinableRooms,
+          joinedRooms: this.currentUser.rooms
+        })
+      })
+      .catch(err => console.log('error on joinableRoom: ', err))
       this.currentUser.subscribeToRoom({
         roomId: 13776982,
         hooks: {
@@ -40,6 +54,7 @@ class App extends Component {
         }
       })
     })
+    .catch(err => console.log('error on connecting: ', err))
   }
 
   sendMessage(text) {
@@ -56,6 +71,8 @@ class App extends Component {
 
         <MessageList messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage}/>
+        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}/>
+        <NewRoomForm />
    
       </div>
     );
