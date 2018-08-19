@@ -1,38 +1,22 @@
-/*.App {
-  text-align: center;
+: root {
+   
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+    font-weight: 200;
+    color:  #3e5869; 
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}*/
 
 #root {
-    height: 100%;
-    --main-color: #5ea3d0;
-    --secondary-color: white;
+    height: 99%;
+     --main-color: #5ea3d0;
+    --secondary-color: lightblue;
     --main-text-color: #3e5869;
-    --secondary-text-color: #b0c7d6;
+    --secondary-text-color: teal;
     --send-message-form: #F5F5F5;
 }
 

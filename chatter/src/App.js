@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './index.css';
-import './App.css';
+// import './index.css';
+// import './App.css';
 import MessageList from './components/MessageList';
 import Chatkit from '@pusher/chatkit';
 import { instanceLocator, tokenUrl } from './components/config';
@@ -95,7 +95,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
 
         <RoomList 
           roomId={this.state.roomId}
