@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import './index.css';
-// import './App.css';
 import MessageList from './components/MessageList';
 import Chatkit from '@pusher/chatkit';
 import { instanceLocator, tokenUrl } from './components/config';
@@ -66,7 +64,8 @@ class App extends Component {
               messages:[...this.state.messages, message]
             })
           }
-        }
+        },
+        messageLimit: 10
       })
     .then(room => {
       this.setState({
