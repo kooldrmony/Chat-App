@@ -65,7 +65,7 @@ class App extends Component {
   sendMessage(text) {
     this.currentUser.sendMessage({
       text,
-      roomId: this.state.roomId
+      roomId: 13776982
     })
   }
 
@@ -79,7 +79,6 @@ class App extends Component {
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
         <MessageList messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage}/>
-        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}/>
         <NewRoomForm />
    
       </div>
