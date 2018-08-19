@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
 import './index.css';
+import './App.css';
 import MessageList from './components/MessageList';
 import Chatkit from '@pusher/chatkit';
 import { instanceLocator, tokenUrl } from './components/config';
@@ -37,6 +36,7 @@ class App extends Component {
       this.currentUser = currentUser
 
       this.currentUser.getJoinableRooms()
+
       .then(joinableRooms => {
         this.setState({
           joinableRooms,
@@ -65,7 +65,7 @@ class App extends Component {
   sendMessage(text) {
     this.currentUser.sendMessage({
       text,
-      roomId: 13776982
+      roomId: this.state.roomId
     })
   }
 
@@ -74,6 +74,9 @@ class App extends Component {
     return (
       <div className="App">
 
+        <RoomList 
+          subscribeToRoom={this.subscribeToRoom}
+          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
         <MessageList messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage}/>
         <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}/>

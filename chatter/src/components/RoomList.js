@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 
 class RoomList extends React.Component {
@@ -21,3 +22,4 @@ class RoomList extends React.Component {
 }
 
 export default RoomList;
+
